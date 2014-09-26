@@ -4,7 +4,12 @@ import org.specs2.mutable.Specification
 
 class FizzBuzzSpec extends Specification {
 
-  def fizzbuzz(input: Int): String = ???
+  def fizzbuzz(input: Int): String = {
+    val map = Map(3 -> "fizz", 5 -> "buzz")
+    map.filter((tuple: (Int, String)) => input % tuple._1 == 0).values
+      .foldLeft(Seq.empty[String])((collection,elem) => Seq(collection.mkString + elem))
+      .headOption.getOrElse(input.toString)
+  }
 
   "fizz buzz" should {
     Seq(1 -> "1",
